@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.views.generic.edit import UpdateView
 from .forms import DriverCreationForm, DriverLicenseUpdateForm, CarForm
-
+from django.shortcuts import render
 from .models import Driver, Car, Manufacturer
 
 
@@ -95,7 +95,7 @@ class DriverDetailView(LoginRequiredMixin, generic.DetailView):
 class DriverCreateView(LoginRequiredMixin, CreateView):
     model = Driver
     form_class = DriverCreationForm
-    template_name = ("driver/driver_form.html")
+    template_name = "driver/driver_form.html"
     success_url = reverse_lazy("taxi:driver-list")
 
 
@@ -124,3 +124,10 @@ def remove_me(request, pk):
     car = get_object_or_404(Car, pk=pk)
     car.drivers.add(request.user)
     return redirect("taxi:car-detail", pk=pk)
+
+
+class DriverUpdateView(LoginRequiredMixin, UpdateView):
+    model = Driver
+    fields = [ "license_number", "first_name", "last_name", "etc"]
+    template_name = "taxi/driver_form.html"
+    success_url = reverse_lazy("taxi:driver-list")
