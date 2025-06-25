@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
-from django.views.generic.edit import DeleteView, UpdateView, CreateView
-from .forms import DriverCreationForm, DriverLicenseUpdateForm, CarForm
-from django.shortcuts import render
-from .models import Driver, Car, Manufacturer
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+
+from .forms import CarForm, DriverCreationForm, DriverLicenseUpdateForm
+from .models import Car, Driver, Manufacturer
 
 
 @login_required

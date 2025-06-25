@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Driver, Car
+
+from .models import Car, Driver
 
 
 class DriverCreationForm(UserCreationForm):
