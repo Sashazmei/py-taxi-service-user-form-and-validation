@@ -22,7 +22,8 @@ from .views import (
 )
 
 urlpatterns = [
-    path("drivers/<int:pk>/update/", DriverUpdateView.as_view(), name="driver-update"),
+    path("drivers/<int:pk>/update/", DriverUpdateView.as_view(),
+         name="driver-update"),
     path("", index, name="index"),
     path(
         "manufacturers/",

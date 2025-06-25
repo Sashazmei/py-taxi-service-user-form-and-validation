@@ -4,7 +4,6 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
-from django.views.generic.edit import UpdateView
 from .forms import DriverCreationForm, DriverLicenseUpdateForm, CarForm
 from django.shortcuts import render
 from .models import Driver, Car, Manufacturer
@@ -128,6 +127,6 @@ def remove_me(request, pk):
 
 class DriverUpdateView(LoginRequiredMixin, UpdateView):
     model = Driver
-    fields = [ "license_number", "first_name", "last_name", "etc"]
+    fields = ["license_number", "first_name", "last_name", "etc"]
     template_name = "taxi/driver_form.html"
     success_url = reverse_lazy("taxi:driver-list")
